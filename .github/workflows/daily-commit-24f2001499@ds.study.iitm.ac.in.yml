@@ -20,6 +20,6 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Daily commit by 24f2001499@ds.study.iitm.ac.in"
+          commit_message: "24f2001499@ds.study.iitm.ac.in"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
