@@ -1,25 +1,23 @@
-name: Daily Commit 24f2001499@ds.study.iitm.ac.in
-run-name: Daily Commit 24f2001499@ds.study.iitm.ac.in
+name: Daily Commit Workflow
 
 on:
   schedule:
-    - cron: '0 4 * * *'
-  workflow_dispatch:
+    # Runs every day at 01:15 UTC (you can choose another specific time)
+    - cron: '15 1 * * *'
 
 jobs:
-  commit:
+  daily-commit:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Update timestamp
-        run: date > last-updated.txt
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "24f2001499@ds.study.iitm.ac.in"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Make a commit - 24f2001499@ds.study.iitm.ac.in
+        run: |
+          echo "Daily update: $(date)" >> daily.txt
+          git config user.name "GitHub Action"
+          git config user.email "24f2001499@ds.study.iitm.ac.in"
+          git add daily.txt
+          git commit -m "Daily commit: $(date)" || echo "Nothing to commit"
+          git push
