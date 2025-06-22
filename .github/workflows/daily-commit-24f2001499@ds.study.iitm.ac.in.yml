@@ -2,8 +2,9 @@ name: Daily Commit Workflow
 
 on:
   schedule:
-    # Runs every day at 01:15 UTC (you can choose another specific time)
+    # Runs every day at 01:15 UTC
     - cron: '15 1 * * *'
+  workflow_dispatch:  # Allows manual triggering from the GitHub UI
 
 jobs:
   daily-commit:
